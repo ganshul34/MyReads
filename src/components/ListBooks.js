@@ -1,7 +1,8 @@
-import React ,{Component} from 'react'
+import React  from 'react'
 import { Link } from 'react-router-dom'
 import  PropTypes  from 'prop-types'
 import BookCategory from './BooksCategory'
+
 export default class BooksCategory extends React.Component{
     static propTypes = {
         books: PropTypes.arrayOf(PropTypes.shape ({
