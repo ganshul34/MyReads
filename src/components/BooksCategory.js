@@ -14,6 +14,17 @@ export default class BooksCategory extends React.Component{
         onChange: PropTypes.string.isRequired
     }
 }
-bookCategories = {
-
-}
+bookCategories = [
+ {
+   name: `wanttoRead`,
+   title: `Want To Read`,
+ },
+ {
+   name: `currentlyReading`,
+   title: `Currently Reading`,
+ },
+ {
+    name: `read`,
+    title: `Read`,
+ },
+]
