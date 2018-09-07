@@ -1,6 +1,6 @@
 import  React from 'react'
-import Proptypes from 'prop-types'
-import { Link } from 'react-router-dom'
+import {Proptypes} from 'prop-types'
+import Book from './Book'
 
 export default class BooksCategory extends React.Component{
     static proptypes ={
@@ -11,7 +11,25 @@ export default class BooksCategory extends React.Component{
     render(){
         const books=this.props.books
         return(
-
+            <div className="bookshelf">
+            <h2 className="bookshelf-title">{this.props.bookTitle}</h2>
+            <div className="bookshelf-books">
+              <ol className="books-grid">
+                {books.map((book,index)=>(
+                  <Book
+                    imageURL={book.imageLinks}
+                    title={book.bookTitle}
+                    author={book.bookAuthors}
+                    key={``.concat(book.bookId,index)}
+                    shelf={book.shelf}
+                    onChange={(category)=>{
+                    this.props.onShelfChange(book.bookId,category)
+                    }}
+                  />
+                ))}
+              </ol>
+            </div>
+          </div>
         )
     }
     
