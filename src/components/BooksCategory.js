@@ -8,5 +8,11 @@ export default class BooksCategory extends React.Component{
         bookTitle: Proptypes.string.isRequired,
         onChange: Proptypes.func.isRequired
     } 
+    render(){
+        const books=this.props.books
+        return(
+
+        )
+    }
     
 }
