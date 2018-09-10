@@ -9,7 +9,7 @@ export default class BooksCategory extends React.Component{
         bookTitle: PropTypes.string.isRequired ,
         bookAuthor: PropTypes.arrayOf(Proptypes.string.isRequired),
         bookId: PropTypes.string.isRequired,
-        category: Proptypes.string.isRequired,
+        categories: Proptypes.string.isRequired,
         imageURL: PropTypes.object.isRequired,
         })),
         onChange: PropTypes.func.isRequired

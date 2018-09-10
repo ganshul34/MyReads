@@ -21,9 +21,9 @@ export default class BooksCategory extends React.Component{
                     title={book.bookTitle}
                     author={book.bookAuthors}
                     key={``.concat(book.bookId,index)}
-                    shelf={book.shelf}
+                    category={book.category}
                     onChange={(category)=>{
-                    this.props.onShelfChange(book.bookId,category)
+                    this.props.onChange(book.bookId,category)
                     }}
                   />
                 ))}
