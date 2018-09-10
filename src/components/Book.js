@@ -6,7 +6,7 @@ export default class Book extends React.Component{
       onChange: PropTypes.func.isRequired,
       imageURL: PropTypes.string.isRequired,
       bookTitle: PropTypes.string.isRequired ,
-      bookAuthor: PropTypes.arrayOf(Proptypes.string.isRequired),
+      bookAuthor: PropTypes.arrayOf(PropTypes.string.isRequired),
       category: PropTypes.string.isRequired,
 
     }

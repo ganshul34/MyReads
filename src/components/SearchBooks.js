@@ -12,9 +12,9 @@ export default class SearchBooks extends React.Component{
     static PropTypes ={
         searchbooks: PropTypes.arrayOf(PropTypes.shape ({
         bookTitle: PropTypes.string.isRequired ,
-        bookAuthor: PropTypes.arrayOf(Proptypes.string.isRequired),
+        bookAuthor: PropTypes.arrayOf(PropTypes.string.isRequired),
         bookId: PropTypes.string.isRequired,
-        categories: Proptypes.string.isRequired,
+        categories: PropTypes.string.isRequired,
         imageURL: PropTypes.object.isRequired,
         })),
         onChange: PropTypes.func.isRequired

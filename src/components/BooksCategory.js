@@ -1,12 +1,12 @@
 import  React from 'react'
-import {Proptypes} from 'prop-types'
+import PropTypes from 'prop-types'
 import Book from './Book'
 
 export default class BooksCategory extends React.Component{
     static proptypes ={
-        books: Proptypes.array,
-        bookTitle: Proptypes.string.isRequired,
-        onChange: Proptypes.func.isRequired
+        books: PropTypes.array,
+        bookTitle: PropTypes.string.isRequired,
+        onChange: PropTypes.func.isRequired
     } 
     render(){
         const books=this.props.books
