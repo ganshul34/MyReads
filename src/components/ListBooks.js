@@ -1,21 +1,21 @@
 import React  from 'react'
 import { Link } from 'react-router-dom'
-import { PropTypes }  from 'prop-types'
-import BookCategory from './BooksCategory'
+import  PropTypes   from 'prop-types'
+import BooksCategory from './BooksCategory'
 
-export default class BooksCategory extends React.Component{
+export default class ListBooks extends React.Component{
     static propTypes = {
         books: PropTypes.arrayOf(PropTypes.shape ({
         bookTitle: PropTypes.string.isRequired ,
         bookAuthor: PropTypes.arrayOf(PropTypes.string.isRequired),
         bookId: PropTypes.string.isRequired,
-        categories: PropTypes.string.isRequired,
+        category: PropTypes.string.isRequired,
         imageURL: PropTypes.object.isRequired,
         })),
         onChange: PropTypes.func.isRequired
     }
    
-    bookCategories = [
+    categories = [
         {
           name: `wanttoRead`,
           title: `Want To Read`,
@@ -39,16 +39,18 @@ export default class BooksCategory extends React.Component{
         </div>
         <div className="list-books-content">
           <div>
-              {categories.map((category,bookId) => (
-               <BookCategory
-               title={category.title}
-               key={bookId}
-               books={books.filter((book) => book.category === category.name)}
-               onChange={(bookId,category)=>{
-                this.props.onChange(bookId,category)
-               }}
-             />
-              ))}
+             
+                { categories.map((category,index)=> (
+              <BooksCategory
+                title={category.heading}
+                key={index}
+                books={books.filter((book) => book.category === category.name)}
+                onChange={(id,category)=>{
+                  this.props.onChange(id,category)
+                }}
+              />
+             )) }
+             
               </div>
               </div>
               <div className='open-search'>

@@ -38,7 +38,7 @@ export default class BooksApp extends React.Component {
       render(){
         return(
          <div className='app'>
-           <Router exact path='/' render={() =>
+           <Route exact path='/' render={() =>
            <ListBooks
            books={this.state.books}
            onChange={(id,category) => {
@@ -51,7 +51,7 @@ export default class BooksApp extends React.Component {
            
            />
 
-           <Router path='/search' render={({ history })=> (
+           <Route path='/search' render={({ history })=> (
               <SearchBooks
               books={this.state.books}
               onChange={(id,category) => {
