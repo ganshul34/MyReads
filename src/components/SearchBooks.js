@@ -74,7 +74,7 @@ export default class SearchBooks extends React.Component{
             <ol className="books-grid"></ol>
           </div>
         </div>
-        {this.state.query !== '' && books.length > 0 && (<BookCategory title="Search Results" books={books} onChange={(id, category) => {
+        {this.state.query !== '' && books.length > 0 && (<BooksCategory title="Search Results" books={books} onChange={(id, category) => {
           this.props.onChange(id, category)
         }}/>)}
       </div>
