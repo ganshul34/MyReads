@@ -20,12 +20,7 @@ export default class BooksApp extends React.Component {
 
     getAllBooks(){
       BooksAPI.getAll()
-      .then(() => {
-        this.setState((books) =>({
-           books 
-        })
-        )
-      })  
+      .then((books) => {this.setState({books})})
     }
     
     onChange(id,category){

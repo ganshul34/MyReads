@@ -1,15 +1,18 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { PropTypes } from 'prop-types'
+import { PropTypes }from 'prop-types'
 import * as BooksAPI from './../BooksAPI'
 import BooksCategory from './BooksCategory'
 
 export default class SearchBooks extends React.Component{
-  state:{
+  constructor(props){
+    super(props)
+    this.state = {
       books: [],
       query: '',
+    }
   }
-    static PropTypes ={
+    static propTypes ={
         searchbooks: PropTypes.arrayOf(PropTypes.shape ({
         bookTitle: PropTypes.string.isRequired ,
         bookAuthor: PropTypes.arrayOf(PropTypes.string.isRequired),
@@ -19,8 +22,7 @@ export default class SearchBooks extends React.Component{
         })),
         onChange: PropTypes.func.isRequired
     }
-      
-      mergeBooks = (old,New) => {
+       mergeBooks = (old,New) => {
     return old.map((oldItem)=>{
       New.forEach((newItem)=>{
         if(newItem.id === oldItem.id){
@@ -31,6 +33,8 @@ export default class SearchBooks extends React.Component{
       return oldItem
     })
   }
+     
+      
       
       updateQuery = (event) => {
     const value = event.target.value.trim()
