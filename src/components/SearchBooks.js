@@ -1,10 +1,11 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
-import { PropTypes }from 'prop-types'
+import {Link} from 'react-router-dom'
+import {PropTypes} from 'prop-types'
 import * as BooksAPI from './../BooksAPI'
 import BooksCategory from './BooksCategory'
 
-export default class SearchBooks extends React.Component{
+export default class SearchBooks extends React.Component {
+
   constructor(props){
     super(props)
     this.state = {
@@ -12,41 +13,41 @@ export default class SearchBooks extends React.Component{
       query: '',
     }
   }
-    static propTypes ={
-        searchbooks: PropTypes.arrayOf(PropTypes.shape ({
-        bookTitle: PropTypes.string.isRequired ,
-        bookAuthor: PropTypes.arrayOf(PropTypes.string.isRequired),
-        bookId: PropTypes.string.isRequired,
-        categories: PropTypes.string.isRequired,
-        imageURL: PropTypes.object.isRequired,
-        })),
-        onChange: PropTypes.func.isRequired
-    }
-       mergeBooks = (old,New) => {
-    return old.map((oldItem)=>{
-      New.forEach((newItem)=>{
-        if(newItem.id === oldItem.id){
-          oldItem.category = newItem.category
+   static propTypes = {
+    Books: PropTypes.arrayOf(PropTypes.shape({
+      title: PropTypes.string.isRequired,
+      category: PropTypes.string.isRequired,
+      imageLinks: PropTypes.object.isRequired,
+      authors: PropTypes.arrayOf(PropTypes.string.isRequired),
+      id: PropTypes.string.isRequired
+    })),
+    onCategoryChange: PropTypes.func.isRequired
+  }
+  
+   mergeBooks = (old,New) => {
+    return old.map((item)=>{
+      New.forEach((Item)=>{
+        if(Item.id === item.id){
+          item.category = Item.category
           return
         }
       })
-      return oldItem
+      return item
     })
   }
-     
-      
-      
-      updateQuery = (event) => {
+
+  updateQuery = (event) => {
     const value = event.target.value.trim()
     this.setState({query: value})
-    this.searchBooks(value)
+    this.searchBooksData(value)
   }
-      searchBooks = (value) => {
+
+  searchBooksData = (value) => {
     if (value.length !== 0) {
       BooksAPI.search(value, 10).then((books) => {
         if(books.length>0){
           books = books.filter((book)=>book.imageLinks)
-          books = this.mergeBooks(books,this.props.searchbooks)
+          books = this.mergeBooks(books,this.props.Books)
           this.setState({books})
         }
         else{
@@ -58,11 +59,13 @@ export default class SearchBooks extends React.Component{
     }
   }
 
-      render(){
-          const books=this.state.books
-          const query=this.state.query
-          return (
-          <div>
+  
+
+  render() {
+    const books = this.state.books
+    const query = this.state.query
+    return (
+      <div>
         <div className="search-books">
           <div className="search-books-bar">
             <Link className="close-search" to="/">Close</Link>
@@ -78,11 +81,14 @@ export default class SearchBooks extends React.Component{
             <ol className="books-grid"></ol>
           </div>
         </div>
-        {this.state.query !== '' && books.length > 0 && (<BooksCategory title="Search Results" books={books} onChange={(id, category) => {
-          this.props.onChange(id, category)
+        {this.state.query !== '' && books.length > 0 && (<BooksCategory title="Search Results" books={books} onCategoryChange={(id, category) => {
+          this.props.onCategoryChange(id, category)
         }}/>)}
       </div>
     )
-      }
-      
+  }
 }
+
+      
+
+
