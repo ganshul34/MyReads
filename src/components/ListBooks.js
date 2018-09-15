@@ -7,7 +7,7 @@ export default class ListBooks extends React.Component {
   static propTypes = {
       books: PropTypes.arrayOf(PropTypes.shape({
       title: PropTypes.string.isRequired,
-      category: PropTypes.string.isRequired,
+      shelf: PropTypes.string.isRequired,
       imageLinks: PropTypes.object.isRequired,
       authors: PropTypes.arrayOf(PropTypes.string.isRequired),
       id: PropTypes.string.isRequired,
@@ -15,7 +15,7 @@ export default class ListBooks extends React.Component {
     onCategoryChange: PropTypes.func.isRequired
   }
 
-  categories = [
+  shelfs = [
     {
       name: `currentlyReading`,
       heading: `Currently Reading`
@@ -31,7 +31,7 @@ export default class ListBooks extends React.Component {
   ]
 
   render(){
-    const categories = this.categories
+    const shelfs = this.shelfs
     const books = this.props.books
 
     return (
@@ -41,13 +41,13 @@ export default class ListBooks extends React.Component {
         </div>
         <div className="list-books-content">
           <div>
-            { categories.map((category,index)=> (
+            { shelfs.map((shelf,index)=> (
               <BooksCategory
-                title={category.heading}
+                title={shelf.heading}
                 key={index}
-                books={books.filter((book) => book.category === category.name)}
-                onCategoryChange={(id,category)=>{
-                  this.props.onCategoryChange(id,category)
+                books={books.filter((book) => book.shelf === shelf.name)}
+                onCategoryChange={(id,shelf)=>{
+                  this.props.onCategoryChange(id,shelf)
                 }}
               />
             )) }

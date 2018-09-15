@@ -23,7 +23,7 @@ export default class BooksCategory extends React.Component {
                 title={book.title}
                 author={book.authors}
                 key={``.concat(book.id,index)}
-                category={book.category}
+                category={book.shelf}
                 onCategoryChange={(category)=>{
                 this.props.onCategoryChange(book.id,category)
                 }}
