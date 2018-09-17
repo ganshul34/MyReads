@@ -37,13 +37,14 @@ export default class SearchBooks extends React.Component {
   }
 
   updateQuery = (event) => {
-    const value = event.target.value.trim()
+    const value = event.target.value
     this.setState({query: value})
     this.searchBooksData(value)
   }
 
   searchBooksData = (value) => {
     if (value.length !== 0) {
+        if(value.trim()){
       BooksAPI.search(value, 10).then((books) => {
         if(books.length>0){
           books = books.filter((book)=>book.imageLinks)
@@ -54,7 +55,7 @@ export default class SearchBooks extends React.Component {
           this.setState({books: []})
         }
       })
-    } else {
+    } } else {
       this.setState({books: [], query: ''})
     }
   }
